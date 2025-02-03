@@ -1,7 +1,7 @@
 # DSC680
-Repository for data science projects.
 
 ## About
+This repository is a collection of projects created at Bellevue University while working toward a Master's in Data Science.
 
 ## Work/Projects
 
