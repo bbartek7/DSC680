@@ -1,0 +1,273 @@
+week,game_id,away,away_score,home,home_score,total
+1,1,Buffalo,31,LA Rams,10,41
+1,2,New Orleans,27,Atlanta,26,53
+1,3,Cleveland,26,Carolina,24,50
+1,4,San Francisco,10,Chicago,19,29
+1,5,Pittsburgh,23,Cincinnati,20,43
+1,6,Indianapolis,20,Houston,20,40
+1,7,Philadelphia,38,Detroit,35,73
+1,8,Jacksonville,22,Washington,28,50
+1,9,New England,7,Miami,20,27
+1,10,Baltimore,24,NY Jets,9,33
+1,11,Kansas City,44,Arizona,21,65
+1,12,Green Bay,7,Minnesota,23,30
+1,13,NY Giants,21,Tennessee,20,41
+1,14,Las Vegas,19,LA Chargers,24,43
+1,15,Tampa Bay,19,Dallas,3,22
+1,16,Denver,16,Seattle,17,33
+2,17,LA Chargers,24,Kansas City,27,51
+2,18,Carolina,16,NY Giants,19,35
+2,19,NY Jets,31,Cleveland,30,61
+2,20,Indianapolis,0,Jacksonville,24,24
+2,21,Washington,27,Detroit,36,63
+2,22,Miami,42,Baltimore,38,80
+2,23,Tampa Bay,20,New Orleans,10,30
+2,24,New England,17,Pittsburgh,14,31
+2,25,Atlanta,27,LA Rams,31,58
+2,26,Seattle,7,San Francisco,27,34
+2,27,Cincinnati,17,Dallas,20,37
+2,28,Arizona,29,Las Vegas,23,52
+2,29,Houston,9,Denver,16,25
+2,30,Chicago,10,Green Bay,27,37
+2,31,Tennessee,7,Buffalo,41,48
+2,32,Minnesota,7,Philadelphia,24,31
+3,33,Pittsburgh,17,Cleveland,29,46
+3,34,Buffalo,19,Miami,21,40
+3,35,New Orleans,14,Carolina,22,36
+3,36,Houston,20,Chicago,23,43
+3,37,Cincinnati,27,NY Jets,12,39
+3,38,Kansas City,17,Indianapolis,20,37
+3,39,Detroit,24,Minnesota,28,52
+3,40,Baltimore,37,New England,26,63
+3,41,Las Vegas,22,Tennessee,24,46
+3,42,Philadelphia,24,Washington,8,32
+3,43,Jacksonville,38,LA Chargers,10,48
+3,44,Atlanta,27,Seattle,23,50
+3,45,LA Rams,20,Arizona,12,32
+3,46,Green Bay,14,Tampa Bay,12,26
+3,47,San Francisco,10,Denver,11,21
+3,48,Dallas,23,NY Giants,16,39
+4,49,Miami,15,Cincinnati,27,42
+4,50,Minnesota,28,New Orleans,25,53
+4,51,Cleveland,20,Atlanta,23,43
+4,52,Buffalo,23,Baltimore,20,43
+4,53,Chicago,12,NY Giants,20,32
+4,54,Tennessee,24,Indianapolis,17,41
+4,55,Washington,10,Dallas,25,35
+4,56,Seattle,48,Detroit,45,93
+4,57,LA Chargers,34,Houston,24,58
+4,58,Jacksonville,21,Philadelphia,29,50
+4,59,NY Jets,24,Pittsburgh,20,44
+4,60,Arizona,26,Carolina,16,42
+4,61,Denver,23,Las Vegas,32,55
+4,62,New England,24,Green Bay,27,51
+4,63,Kansas City,41,Tampa Bay,31,72
+4,64,LA Rams,9,San Francisco,24,33
+5,65,Indianapolis,12,Denver,9,21
+5,66,NY Giants,27,Green Bay,22,49
+5,67,Atlanta,15,Tampa Bay,21,36
+5,68,Pittsburgh,3,Buffalo,38,41
+5,69,Chicago,22,Minnesota,29,51
+5,70,LA Chargers,30,Cleveland,28,58
+5,71,Detroit,0,New England,29,29
+5,72,Houston,13,Jacksonville,6,19
+5,73,Miami,17,NY Jets,40,57
+5,74,Seattle,32,New Orleans,39,71
+5,75,Tennessee,21,Washington,17,38
+5,76,San Francisco,37,Carolina,15,52
+5,77,Philadelphia,20,Arizona,17,37
+5,78,Dallas,22,LA Rams,10,32
+5,79,Cincinnati,17,Baltimore,19,36
+5,80,Las Vegas,29,Kansas City,30,59
+6,81,Washington,12,Chicago,7,19
+6,82,San Francisco,14,Atlanta,28,42
+6,83,Cincinnati,30,New Orleans,26,56
+6,84,New England,38,Cleveland,15,53
+6,85,Jacksonville,27,Indianapolis,34,61
+6,86,NY Jets,27,Green Bay,10,37
+6,87,Minnesota,24,Miami,16,40
+6,88,Baltimore,20,NY Giants,24,44
+6,89,Tampa Bay,18,Pittsburgh,20,38
+6,90,Carolina,10,LA Rams,24,34
+6,91,Arizona,9,Seattle,19,28
+6,92,Buffalo,24,Kansas City,20,44
+6,93,Dallas,17,Philadelphia,26,43
+6,94,Denver,16,LA Chargers,19,35
+7,95,New Orleans,34,Arizona,42,76
+7,96,Atlanta,17,Cincinnati,35,52
+7,97,Tampa Bay,3,Carolina,21,24
+7,98,Cleveland,20,Baltimore,23,43
+7,99,Indianapolis,10,Tennessee,19,29
+7,100,Detroit,6,Dallas,24,30
+7,101,Green Bay,21,Washington,23,44
+7,102,NY Giants,23,Jacksonville,17,40
+7,103,Houston,20,Las Vegas,38,58
+7,104,NY Jets,16,Denver,9,25
+7,105,Kansas City,44,San Francisco,23,67
+7,106,Seattle,37,LA Chargers,23,60
+7,107,Pittsburgh,10,Miami,16,26
+7,108,Chicago,33,New England,14,47
+8,109,Baltimore,27,Tampa Bay,22,49
+8,110,Pittsburgh,13,Philadelphia,25,38
+8,111,New England,22,NY Jets,17,39
+8,112,Las Vegas,0,New Orleans,24,24
+8,113,Arizona,26,Minnesota,34,60
+8,114,Miami,31,Detroit,27,58
+8,115,Chicago,29,Dallas,49,78
+8,116,Carolina,34,Atlanta,37,71
+8,117,Tennessee,17,Houston,10,27
+8,118,Washington,17,Indianapolis,16,33
+8,119,San Francisco,31,LA Rams,14,45
+8,120,NY Giants,13,Seattle,27,40
+8,121,Green Bay,17,Buffalo,27,44
+8,122,Cincinnati,13,Cleveland,32,45
+8,123,Denver,21,Jacksonville,17,38
+9,124,Philadelphia,29,Houston,17,46
+9,125,Indianapolis,3,New England,26,29
+9,126,Green Bay,9,Detroit,15,24
+9,127,LA Chargers,20,Atlanta,17,37
+9,128,Buffalo,17,NY Jets,20,37
+9,129,Minnesota,20,Washington,17,37
+9,130,Carolina,21,Cincinnati,42,63
+9,131,Las Vegas,20,Jacksonville,27,47
+9,132,Miami,35,Chicago,32,67
+9,133,Seattle,31,Arizona,21,52
+9,134,LA Rams,13,Tampa Bay,16,29
+9,135,Tennessee,17,Kansas City,20,37
+9,136,Baltimore,27,New Orleans,13,40
+10,137,Atlanta,15,Carolina,25,40
+10,138,Seattle,16,Tampa Bay,21,37
+10,139,Minnesota,33,Buffalo,30,63
+10,140,Denver,10,Tennessee,17,27
+10,141,New Orleans,10,Pittsburgh,20,30
+10,142,Houston,16,NY Giants,24,40
+10,143,Cleveland,17,Miami,39,56
+10,144,Jacksonville,17,Kansas City,27,44
+10,145,Detroit,31,Chicago,30,61
+10,146,Indianapolis,25,Las Vegas,20,45
+10,147,Dallas,28,Green Bay,31,59
+10,148,Arizona,27,LA Rams,17,44
+10,149,LA Chargers,16,San Francisco,22,38
+10,150,Washington,32,Philadelphia,21,53
+11,151,Tennessee,27,Green Bay,17,44
+11,152,Chicago,24,Atlanta,27,51
+11,153,Carolina,3,Baltimore,13,16
+11,154,Cleveland,23,Buffalo,31,54
+11,155,Washington,23,Houston,10,33
+11,156,Philadelphia,17,Indianapolis,16,33
+11,157,NY Jets,3,New England,10,13
+11,158,LA Rams,20,New Orleans,27,47
+11,159,Detroit,31,NY Giants,18,49
+11,160,Las Vegas,22,Denver,16,38
+11,161,Dallas,40,Minnesota,3,43
+11,162,Cincinnati,37,Pittsburgh,30,67
+11,163,Kansas City,30,LA Chargers,27,57
+11,164,San Francisco,38,Arizona,10,48
+12,165,Buffalo,28,Detroit,25,53
+12,166,NY Giants,20,Dallas,28,48
+12,167,New England,26,Minnesota,33,59
+12,168,Houston,15,Miami,30,45
+12,169,Baltimore,27,Jacksonville,28,55
+12,170,Denver,10,Carolina,23,33
+12,171,Cincinnati,20,Tennessee,16,36
+12,172,Atlanta,13,Washington,19,32
+12,173,Chicago,10,NY Jets,31,41
+12,174,Tampa Bay,17,Cleveland,23,40
+12,175,Las Vegas,40,Seattle,34,74
+12,176,LA Chargers,25,Arizona,24,49
+12,177,LA Rams,10,Kansas City,26,36
+12,178,New Orleans,0,San Francisco,13,13
+12,179,Green Bay,33,Philadelphia,40,73
+12,180,Pittsburgh,24,Indianapolis,17,41
+13,181,Buffalo,24,New England,10,34
+13,182,Denver,9,Baltimore,10,19
+13,183,NY Jets,22,Minnesota,27,49
+13,184,Tennessee,10,Philadelphia,35,45
+13,185,Cleveland,27,Houston,14,41
+13,186,Washington,20,NY Giants,20,40
+13,187,Jacksonville,14,Detroit,40,54
+13,188,Pittsburgh,19,Atlanta,16,35
+13,189,Green Bay,28,Chicago,19,47
+13,190,Miami,17,San Francisco,33,50
+13,191,Seattle,27,LA Rams,23,50
+13,192,Kansas City,24,Cincinnati,27,51
+13,193,LA Chargers,20,Las Vegas,27,47
+13,194,Indianapolis,19,Dallas,54,73
+13,195,New Orleans,16,Tampa Bay,17,33
+14,196,Las Vegas,16,LA Rams,17,33
+14,197,Minnesota,23,Detroit,34,57
+14,198,Philadelphia,48,NY Giants,22,70
+14,199,NY Jets,12,Buffalo,20,32
+14,200,Cleveland,10,Cincinnati,23,33
+14,201,Houston,23,Dallas,27,50
+14,202,Jacksonville,36,Tennessee,22,58
+14,203,Baltimore,16,Pittsburgh,14,30
+14,204,Kansas City,34,Denver,28,62
+14,205,Carolina,30,Seattle,24,54
+14,206,Tampa Bay,7,San Francisco,35,42
+14,207,Miami,17,LA Chargers,23,40
+14,208,New England,27,Arizona,13,40
+15,209,San Francisco,21,Seattle,13,34
+15,210,Indianapolis,33,Minnesota,36,69
+15,211,Baltimore,3,Cleveland,13,16
+15,212,Miami,29,Buffalo,32,61
+15,213,Philadelphia,25,Chicago,20,45
+15,214,Kansas City,30,Houston,24,54
+15,215,Dallas,34,Jacksonville,40,74
+15,216,Detroit,20,NY Jets,17,37
+15,217,Atlanta,18,New Orleans,21,39
+15,218,Pittsburgh,24,Carolina,16,40
+15,219,Arizona,15,Denver,24,39
+15,220,New England,24,Las Vegas,30,54
+15,221,Cincinnati,34,Tampa Bay,23,57
+15,222,Tennessee,17,LA Chargers,14,31
+15,223,NY Giants,20,Washington,12,32
+15,224,LA Rams,12,Green Bay,24,36
+16,225,Jacksonville,19,NY Jets,3,22
+16,226,Buffalo,35,Chicago,13,48
+16,227,Seattle,10,Kansas City,24,34
+16,228,Cincinnati,22,New England,18,40
+16,229,Detroit,23,Carolina,37,60
+16,230,NY Giants,24,Minnesota,27,51
+16,231,Houston,19,Tennessee,14,33
+16,232,New Orleans,17,Cleveland,10,27
+16,233,Atlanta,9,Baltimore,17,26
+16,234,Washington,20,San Francisco,37,57
+16,235,Philadelphia,34,Dallas,40,74
+16,236,Las Vegas,10,Pittsburgh,13,23
+16,237,Green Bay,26,Miami,20,46
+16,238,Denver,14,LA Rams,51,65
+16,239,Tampa Bay,19,Arizona,16,35
+16,240,LA Chargers,20,Indianapolis,3,23
+17,241,Dallas,27,Tennessee,13,40
+17,242,Denver,24,Kansas City,27,51
+17,243,New Orleans,20,Philadelphia,10,30
+17,244,Jacksonville,31,Houston,3,34
+17,245,Indianapolis,10,NY Giants,38,48
+17,246,Chicago,10,Detroit,41,51
+17,247,Carolina,24,Tampa Bay,30,54
+17,248,Miami,21,New England,23,44
+17,249,Cleveland,24,Washington,10,34
+17,250,Arizona,19,Atlanta,20,39
+17,251,San Francisco,37,Las Vegas,34,71
+17,252,NY Jets,6,Seattle,23,29
+17,253,Minnesota,17,Green Bay,41,58
+17,254,LA Rams,10,LA Chargers,31,41
+17,255,Pittsburgh,16,Baltimore,13,29
+17,256,Buffalo,3,Cincinnati,7,10
+18,257,Kansas City,31,Las Vegas,13,44
+18,258,Tennessee,16,Jacksonville,20,36
+18,259,Tampa Bay,17,Atlanta,30,47
+18,260,New England,23,Buffalo,35,58
+18,261,Minnesota,29,Chicago,13,42
+18,262,Baltimore,16,Cincinnati,27,43
+18,263,Houston,32,Indianapolis,31,63
+18,264,NY Jets,6,Miami,11,17
+18,265,Carolina,10,New Orleans,7,17
+18,266,Cleveland,14,Pittsburgh,28,42
+18,267,LA Chargers,28,Denver,31,59
+18,268,NY Giants,16,Philadelphia,22,38
+18,269,Arizona,38,San Francisco,13,51
+18,270,LA Rams,16,Seattle,19,35
+18,271,Dallas,6,Washington,26,32
+18,272,Detroit,20,Green Bay,16,36
