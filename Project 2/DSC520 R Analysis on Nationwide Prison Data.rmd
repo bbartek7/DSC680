@@ -1,0 +1,478 @@
+---
+title: "Final Project DSC 520"
+author: "Benjamin Bartek"
+date: "6/1/2019"
+output: word_document
+---
+
+
+##Summary of Problem Statement
+The problem I aim to address is to identify the total nationwide prison population over time, as well as identify the potential correlation between demographic variables, sentencing, categories of crime, and other variables in order to glean insights into incarceration practices in the United States. I will also likely briefly identify how many U.S. citizens cannot vote due to their status as a convicted felon.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Install Packages
+```
+install.packages("ggplot2")
+install.packages("pastecs")
+install.packages("rcompanion")
+install.packages("rmarkdown")
+install.packages("corrplot")
+install.packages("RColorBrewer")
+install.packages("PerformanceAnalytics")
+install.packages("ggm")
+install.packages("dplyr")
+library(dplyr)
+library(pastecs)
+library(ggplot2)
+library(rcompanion)
+library(rmarkdown)
+library(corrplot)
+library(RColorBrewer)
+library(PerformanceAnalytics)
+library(ggm)
+```
+
+##Main Data Cleaning Narrative
+
+Though we have been learning how to do data cleaning in R, most of my data cleaning did not occur within R; it occurred within Excel. And there are some very good reasons primarily relating to ensuring that the data could even be imported into R correctly. Generally in class, we start with mostly clean datsets. However, I obtained my datasets from disparate sources, with disparate formats. There was a lot of extraneous information that needed to be removed from the tops and bottoms of the spreadsheets that would not import into R properly. 
+
+I worked with numerous spreadsheets. I had to select which columns and rows I wanted from those spreadsheets, delete other columns and rows, and change the orientation of the columns and rows to fit my dataframe. I also had to create new variable names to fit the scheme of my dataset.
+
+There were numerous extraneous characters that needed to be removed in order for R to read the data correctly.
+
+I changed the spreadsheet cell formats where necessary to ensure that numbers were reading as numbers in R instead of strings. 
+
+At one point while examining the dataset for outliers, I discovered that a large chunk of cells was incorrectly displaying as negative values in R. I went back to the source spreadsheet and replaced them in my working data frame with the proper format and value.
+
+There are many missing values in this dataset. That is a result of merging many datasets that measure some variables, but not others. But all of the numeric data relates to the entire US corrections population, the federal corrections population, the entire state corrections population, or each individual state's corrections population. I intend to deal with skipping over NA values when I begin running analyses with the individual variables and regression models.
+
+Michigan and Georgia are also missing some prominent 2016 data that was presumably not reported to the BJS agency. I may need to try to find that data from the states themselves.
+
+I may also need to find other data that relates to demographics.
+
+
+
+#Main Variable - Opening the File with the Correct Method
+```{r, echo=FALSE}
+maindata <- read.csv("condensed_data.csv", header = TRUE, stringsAsFactors = TRUE)
+```
+
+
+#View Number of Rows and Columns
+```{r, echo=TRUE}
+nrow(maindata)
+ncol(maindata)
+```
+
+#Structure of DataFrame
+```{r, echo=TRUE}
+str(maindata)
+```
+
+#ViewDataFrame
+```{r, echo=TRUE}
+#View(maindata)
+```
+
+#Summary - Identifying Ranges, Averages, Missing Values
+```{r, echo=TRUE}
+summary(maindata)
+```
+
+#Head
+```{r, echo=TRUE}
+head(maindata)
+```
+
+#Tail
+```{r, echo=TRUE}
+tail(maindata)
+```
+
+
+#Missing Values
+```{r, echo=FALSE}
+sapply(maindata, function(x) sum(is.na(x)))
+```
+
+##1.	What is the total prison population in relation to the entire United States population? (There are some variables that I can use to infer the overall population or to sum and see the overall population, but I may want to find a population-specific dataset.)
+
+The incarceration rate for the entire US population aged 18 and older is the first value in rate: 850 per 100,000 residents.
+```{r, echo=TRUE}
+rate <- maindata$Incarc_rate_per_100k_US_residents_18_or_older
+rate
+```
+
+Finding a percentage value for 850 / 100,000
+```{r, echo=TRUE}
+popprct <- 850 / 100000
+popprct
+```
+
+Inferring 18+ population of the US based on the rate of imprisonment and the number of reported prisoners (from prison_or_jail_2016)
+```{r, echo=TRUE}
+prison_pop_over_18 <- 2131000
+us_pop_over_18 <- prison_pop_over_18 / popprct
+us_pop_over_18
+```
+
+Based on the figures in the dataset, the US population of people 18 and over is 250,705,882. As previously determined, the incarceration rate is 850 people per 100,000 people 18+.
+
+```{r, echo=TRUE}
+prison_pct <- prison_pop_over_18 / us_pop_over_18
+prison_pct
+```
+
+The percentage of adults 18 and older in the US in 2016 that were imprisoned can be stated as a raw percentage as well: 0.85% of the US population, or less than 1%.
+
+##2.	How has the U.S. prison population changed over time?
+
+#Prison or Jail Population 2000, 2010, 2015, 2016 Subset
+```{r, echo=FALSE}
+library(dplyr)
+pj_subset <- subset(maindata, select = c(jurisdiction, prison_or_jail_2000, prison_or_jail_2010, prison_or_jail_2015, prison_or_jail_2016))
+prison_or_jail <- pj_subset[complete.cases(pj_subset),]
+
+glimpse(prison_or_jail)
+```
+
+
+```{r, echo=TRUE}
+plot(prison_or_jail$prison_or_jail_2000, main = "US Prison + Jail Population 2000", xlab = "1. US All, 2. US Federal, 3. All States", ylab="Prison + Jail Population 2000")
+```
+
+```{r, echo=TRUE}
+plot(prison_or_jail$prison_or_jail_2010, main = "US Prison + Jail Population 2010", xlab = "1. US All, 2. US Federal, 3. All States", ylab="Prison + Jail Population 2010")
+```
+
+```{r, echo=TRUE}
+plot(prison_or_jail$prison_or_jail_2015, main = "US Prison + Jail Population 2015", xlab = "1. US All, 2. US Federal, 3. All States", ylab="Prison + Jail Population 2015")
+```
+
+```{r, echo=TRUE}
+plot(prison_or_jail$prison_or_jail_2016, main = "US Prison + Jail Population 2016", xlab = "1. US All, 2. US Federal, 3. All States", ylab="Prison + Jail Population 2016")
+```
+#50 State + Federal Prison Population 2001 - 2016 Subset
+```{r, echo=FALSE}
+library(dplyr)
+as_subset <- subset(maindata, select = c(jurisdiction, prison_2001, prison_2002, prison_2003, prison_2004, prison_2005, prison_2006, prison_2007, prison_2008, prison_2009, prison_2010, prison_2011, prison_2012, prison_2013, prison_2014, prison_2015, prison_2016))
+allstates <- as_subset[complete.cases(as_subset),]
+
+glimpse(allstates)
+```
+
+
+```{r, echo=FALSE}
+summary(allstates)
+```
+
+
+```{r, echo=TRUE}
+plot(allstates$prison_2001, main = "2001 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2002, main = "2002 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2003, main = "2003 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2004, main = "2004 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2005, main = "2005 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2006, main = "2006 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2007, main = "2007 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2008, main = "2008 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2009, main = "2009 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2010, main = "2010 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2011, main = "2011 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2012, main = "2012 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2013, main = "2013 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2014, main = "2014 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2015, main = "2015 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+```{r, echo=TRUE}
+plot(allstates$prison_2016, main = "2016 Prison Population by Federal and Individual State", xlab = "Federal + 50 States", ylab="Prison Population")
+```
+
+
+##3.	What demographic factors are most closely correlated with being incarcerated?
+
+#Demographic Subset
+```{r, ehco=TRUE}
+library(dplyr)
+dem_subset <- subset(maindata, select = c(jurisdiction, prison_2016, White_2016_fed_sent,	Black_2016_fed_sent,	Hisp_2016_fed_sent,	Native_2016_fed_sent,	Asian_Pac_2016_fed_sent))
+demographic <- dem_subset[complete.cases(dem_subset),]
+
+glimpse(demographic)
+```
+
+```{r, echo=TRUE}
+dem_prison_pop_all <- demographic$prison_2016
+white <- demographic$White_2016_fed_sent
+black <- demographic$Black_2016_fed_sent
+hispanic <- demographic$Hisp_2016_fed_sent
+native <- demographic$Native_2016_fed_sent
+asian <- demographic$Asian_Pac_2016_fed_sent
+```
+
+#Percentage White: 24.9%
+```{r, echo=TRUE}
+white / dem_prison_pop_all
+```
+
+#Percentage Black: 31.5%
+```{r, echo=TRUE}
+black / dem_prison_pop_all
+```
+
+#Percentage Hispanic: 30.4%
+```{r, echo=TRUE}
+hispanic / dem_prison_pop_all
+```
+
+#Percentage Native American: 1.8%
+```{r, echo=TRUE}
+native / dem_prison_pop_all
+```
+
+#Percentage Asian & Pacific Islander: 1.2%
+```{r, echo=TRUE}
+asian / dem_prison_pop_all
+```
+
+
+##4.	How many Americans cannot vote due to their status as a convicted felon?
+#Population Disenfranchised from Voting Due to Imprisonment
+
+#Voting Subset
+```{r, echo=FALSE}
+vap_subset <- subset(maindata, select = c(jurisdiction, vap2016, percentage_disenfranchised_2016))
+disenfranchised <- vap_subset[complete.cases(vap_subset),]
+
+disenfranchised
+```
+
+```{r, echo=TRUE}
+plot(vap2016 ~ jurisdiction, data = disenfranchised)
+```
+
+
+
+```{r, echo=TRUE}
+dis_calc <- disenfranchised$percentage_disenfranchised_2016 * disenfranchised$vap2016
+
+dis_calc
+```
+
+```{r, echo=TRUE}
+disenfranchised$tot_disenfranchised <- dis_calc
+disenfranchised
+```
+
+The first value is the entire population disenfranchised from voting based on imprisonment throughout the country. That number is 4,944,391.
+
+#Entire disenfranchised population by adding states with values, then subtracting the US value.
+```{r, ehco=TRUE}
+dis_calc2 <- (sum(dis_calc)) - 4944391.76
+dis_calc2
+
+```
+Missing values are problematic here, but it gives a higher overall number: 6,195696
+
+#Averaging the two Disenfranchisement Totals
+```{r, ehco=TRUE}
+(sum(dis_calc))/2
+```
+5,570,044
+
+
+##5.	What kinds of crime are most closely associated with incarceration?
+This was problematic in the end, as I cannot use the different crime categories as predictors when my data is solely about those who have been imprisoned. As with the demographic categories, I looked at percentages.
+
+```{r, ehco=TRUE}
+library(dplyr)
+crime_subset <- subset(maindata, select = c(jurisdiction, prison_or_jail_2016, violent_crime_total_2016,	murder_manslaughter_2016,	rape_revised_2016,	robbery_2016,	agg_assault_2016,	property_crime_total_2016,	burglary_2016,	larceny_2016,	vehicle_theft_2016))
+crimes <- crime_subset[complete.cases(crime_subset),]
+
+glimpse(crimes)
+```
+
+```{r, echo=TRUE}
+summary(crimes)
+```
+
+```{r, ehco=TRUE}
+jurisdiction <- crimes$jurisdiction
+incarcerated <- crimes$prison_or_jail_2016
+violent <- crimes$violent_crime_total_2016 / incarcerated
+murder <- crimes$murder_manslaughter_2016 / incarcerated
+rape <- crimes$rape_revised_2016 / incarcerated
+robbery <- crimes$robbery_2016 / incarcerated
+assault <- crimes$agg_assault_2016 / incarcerated
+property <- crimes$property_crime_total_2016 / incarcerated
+burglary <- crimes$burglary_2016 / incarcerated
+larceny <- crimes$larceny_2016 / incarcerated
+vehicletheft <- crimes$vehicle_theft_2016 / incarcerated
+```
+
+#Violent Crime Percentages by State
+```{r, ehco=TRUE}
+violent_subset <- subset(crimes, select = c(jurisdiction))
+violent_subset$violence_rate <- violent
+
+violent_sorted <- violent_subset[order(-violent_subset$violence_rate),]
+violent_sorted
+```
+
+
+```{r, ehco=TRUE}
+plot(violent ~ jurisdiction, data = crimes)
+```
+
+
+```{r, ehco=TRUE}
+murder_subset <- subset(crimes, select = c(jurisdiction))
+murder_subset$murder_rate <- murder
+murder_sorted <- murder_subset[order(-murder_subset$murder_rate),]
+murder_sorted
+```
+
+```{r, ehco=TRUE}
+plot(murder ~ jurisdiction, data = crimes)
+```
+
+
+```{r, ehco=TRUE}
+rape_subset <- subset(crimes, select = c(jurisdiction))
+rape_subset$rape_rate <- rape
+rape_sorted <- rape_subset[order(-rape_subset$rape_rate),]
+rape_sorted
+```
+
+```{r, ehco=TRUE}
+plot(rape ~ jurisdiction, data = crimes)
+```
+
+```{r, ehco=TRUE}
+robbery_subset <- subset(crimes, select = c(jurisdiction))
+robbery_subset$robbery_rate <- robbery
+robbery_sorted <- robbery_subset[order(-robbery_subset$robbery_rate),]
+robbery_sorted
+```
+
+```{r, ehco=TRUE}
+plot(robbery ~ jurisdiction, data = crimes)
+```
+
+```{r, ehco=TRUE}
+assault_subset <- subset(crimes, select = c(jurisdiction))
+assault_subset$assault_rate <- assault
+assault_sorted <- assault_subset[order(-assault_subset$assault_rate),]
+assault_sorted
+```
+
+```{r, ehco=TRUE}
+plot(assault ~ jurisdiction, data = crimes)
+```
+
+```{r, ehco=TRUE}
+larceny_subset <- subset(crimes, select = c(jurisdiction))
+larceny_subset$larceny_rate <- larceny
+larceny_sorted <- larceny_subset[order(-larceny_subset$larceny_rate),]
+larceny_sorted
+```
+
+```{r, ehco=TRUE}
+plot(larceny ~ jurisdiction, data = crimes)
+```
+
+```{r, ehco=TRUE}
+vehicletheft_subset <- subset(crimes, select = c(jurisdiction))
+vehicletheft_subset$vehicletheft_rate <- vehicletheft
+vehicletheft_sorted <- vehicletheft_subset[order(-vehicletheft_subset$vehicletheft_rate),]
+vehicletheft_sorted
+```
+
+```{r, ehco=TRUE}
+plot(vehicletheft ~ jurisdiction, data = crimes)
+```
+
+```{r, ehco=TRUE}
+property_subset <- subset(crimes, select = c(jurisdiction))
+property_subset$property_rate <- property
+property_sorted <- property_subset[order(-property_subset$property_rate),]
+property_sorted
+```
+
+```{r, ehco=TRUE}
+plot(property ~ jurisdiction, data = crimes)
+```
+
+```{r, ehco=TRUE}
+burglary_subset <- subset(crimes, select = c(jurisdiction))
+burglary_subset$burglary_rate <- burglary
+burglary_sorted <- burglary_subset[order(-burglary_subset$burglary_rate),]
+burglary_sorted
+```
+
+```{r, ehco=TRUE}
+plot(burglary ~ jurisdiction, data = crimes)
+```
+
+##6.	Which states have the highest incarceration rates?
+
+```{r, ehco=TRUE}
+state_incarc_subset <- subset(maindata, select = c(jurisdiction, Incarc_rate_per_100k_US_residents_18_or_older))
+states <- state_incarc_subset[complete.cases(state_incarc_subset),]
+
+states
+```
+
+#Highest Incarceration Rates by State
+
+Top 5: Oklahoma, Louisiana, Mississippi, Georgia, Alabama
+Bottom 5: Maine, Minnesota, Rhode Island, Vermont, Massachusetts
+```{r, echo=TRUE}
+states_sorted <- states[order(-states$Incarc_rate_per_100k_US_residents_18_or_older),]
+states_sorted
+```
